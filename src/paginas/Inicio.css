@@ -1,0 +1,20 @@
+.inicio {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+.inicio__titulo { font-size: 2.5rem; }
+.inicio__titulo-destacado { color: #B85F7D; }
+.inicio__subtitulo { color: #555; margin-bottom: 2rem; }
+.inicio__error { color: #c92a2a; }
+
+.inicio__boton {
+  display: inline-block;
+  background: #B85F7D;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+}
+

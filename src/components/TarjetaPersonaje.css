@@ -1,0 +1,118 @@
+.tarjeta-personaje {
+  --color-elemento: #E8A9BA;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-elemento) 10%, #fff);
+  box-shadow: var(--sombra, 0 2px 8px rgb(0 0 0 / 0.08));
+  border-top: 6px solid var(--color-elemento);
+}
+
+.tarjeta-personaje--pyro    { --color-elemento: #e4572e; }
+.tarjeta-personaje--hydro   { --color-elemento: #3a86ff; }
+.tarjeta-personaje--electro { --color-elemento: #9b5de5; }
+.tarjeta-personaje--cryo    { --color-elemento: #5ec2d8; }
+.tarjeta-personaje--geo     { --color-elemento: #e0a526; }
+.tarjeta-personaje--anemo   { --color-elemento: #3fbf9b; }
+.tarjeta-personaje--dendro  { --color-elemento: #7cb518; }
+
+.tarjeta-personaje__imagen {
+  aspect-ratio: 4 / 3;
+  background: color-mix(in srgb, var(--color-elemento) 25%, #fff);
+}
+
+.tarjeta-personaje__imagen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.tarjeta-personaje__sin-imagen {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-elemento);
+}
+
+.tarjeta-personaje__cuerpo {
+  padding: 1rem;
+}
+
+.tarjeta-personaje__vision {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-elemento);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tarjeta-personaje__nombre {
+  margin: 0.5rem 0;
+}
+
+.tarjeta-personaje__nombre a {
+  color: var(--texto, #49303F);
+  text-decoration: none;
+}
+
+.tarjeta-personaje__nombre a:hover,
+.tarjeta-personaje__nombre a:focus-visible {
+  color: var(--primario-oscuro, #A84468);
+  text-decoration: underline;
+}
+
+.tarjeta-personaje__dato {
+  margin: 0.25rem 0;
+}
+
+.tarjeta-personaje__etiqueta {
+  display: inline-block;
+  min-width: 3.5rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.tarjeta-personaje__favorito {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--rosa-claro, #F5D5DC);
+  color: var(--primario-oscuro, #A84468);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tarjeta-personaje__favorito span {
+  display: block;
+  line-height: 1;
+  transform: translateY(-1px); /* corrección óptica del glifo */
+}
+
+.tarjeta-personaje__favorito:hover,
+.tarjeta-personaje__favorito:focus-visible {
+  background: var(--rosa-medio, #E8A9BA);
+}
+
+.tarjeta-personaje__favorito--activo {
+  background: var(--primario, #B85F7D);
+  color: #fff;
+}

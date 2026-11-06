@@ -1,0 +1,161 @@
+.detalle__volver {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--primario-oscuro, #A84468);
+  text-decoration: none;
+}
+
+.detalle__volver:hover,
+.detalle__volver:focus-visible {
+  text-decoration: underline;
+}
+
+.detalle {
+  --color-elemento: #E8A9BA;
+  display: grid;
+  grid-template-columns: 1fr;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--sombra, 0 2px 8px rgb(0 0 0 / 0.08));
+  border-top: 6px solid var(--color-elemento);
+}
+
+.detalle--pyro    { --color-elemento: #e4572e; }
+.detalle--hydro   { --color-elemento: #3a86ff; }
+.detalle--electro { --color-elemento: #9b5de5; }
+.detalle--cryo    { --color-elemento: #5ec2d8; }
+.detalle--geo     { --color-elemento: #e0a526; }
+.detalle--anemo   { --color-elemento: #3fbf9b; }
+.detalle--dendro  { --color-elemento: #7cb518; }
+
+@media (min-width: 700px) {
+  .detalle {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+.detalle__imagen {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  background: color-mix(in srgb, var(--color-elemento) 25%, #fff);
+}
+
+.detalle__imagen img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.detalle__sin-imagen {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.detalle__contenido {
+  padding: 1.5rem;
+}
+
+.detalle__nombre {
+  margin: 0;
+}
+
+.detalle__titulo {
+  margin: 0.25rem 0 0;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.detalle__rareza {
+  margin: 0.5rem 0;
+  color: #e0a526;
+  font-size: 1.2rem;
+}
+
+.detalle__descripcion {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.detalle__datos {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+}
+
+.detalle__dato {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.detalle__dato dt {
+  min-width: 8rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.detalle__dato dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------- Botones (mismo estilo que el de Inicio) ---------- */
+.detalle__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.detalle__boton {
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  border: 2px solid var(--primario, #B85F7D);
+  border-radius: 8px;
+  background: var(--primario, #B85F7D);
+  color: #fff;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.detalle__boton:hover,
+.detalle__boton:focus-visible {
+  border-color: var(--primario-oscuro, #A84468);
+  background: var(--primario-oscuro, #A84468);
+}
+
+/* Botón secundario: con borde, sin relleno */
+.detalle__boton--secundario {
+  background: transparent;
+  color: var(--primario-oscuro, #A84468);
+}
+
+.detalle__boton--secundario:hover,
+.detalle__boton--secundario:focus-visible {
+  background: var(--rosa-claro, #F5D5DC);
+  border-color: var(--primario-oscuro, #A84468);
+  color: var(--primario-oscuro, #A84468);
+}
+
+/* Ya está en favoritos: se invierte para que se note el cambio */
+.detalle__boton--activo {
+  background: var(--rosa-claro, #F5D5DC);
+  color: var(--primario-oscuro, #A84468);
+}
+
+.detalle__boton--activo:hover,
+.detalle__boton--activo:focus-visible {
+  background: var(--rosa-medio, #E8A9BA);
+  border-color: var(--primario-oscuro, #A84468);
+  color: var(--texto, #49303F);
+}
+
+.detalle__estado {
+  padding: 3rem 0;
+  text-align: center;
+}

@@ -1,0 +1,112 @@
+.contacto {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.contacto__titulo {
+  margin: 0 0 0.25rem;
+}
+
+.contacto__texto {
+  margin: 0 0 1.5rem;
+  opacity: 0.75;
+}
+
+.contacto__formulario {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--sombra, 0 2px 8px rgb(0 0 0 / 0.08));
+}
+
+.campo {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.campo__etiqueta {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.campo__control {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--rosa-medio, #E8A9BA);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--texto, #49303F);
+  font: inherit;
+}
+
+textarea.campo__control {
+  resize: vertical;
+}
+
+.campo__control:focus-visible {
+  outline: 2px solid var(--primario, #B85F7D);
+  outline-offset: 1px;
+}
+
+.campo__control--error {
+  border-color: var(--error, #b3261e);
+}
+
+.campo__error {
+  margin: 0;
+  color: var(--error, #b3261e);
+  font-size: 0.85rem;
+}
+
+.contacto__boton {
+  justify-self: start;
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--primario, #B85F7D);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.contacto__boton:hover:not(:disabled),
+.contacto__boton:focus-visible {
+  background: var(--primario-oscuro, #A84468);
+}
+
+.contacto__boton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---------- Pantalla de éxito ---------- */
+.contacto__exito {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1.5rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--sombra, 0 2px 8px rgb(0 0 0 / 0.08));
+  text-align: center;
+}
+
+.contacto__exito-icono {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0;
+  border-radius: 50%;
+  background: var(--rosa-claro, #F5D5DC);
+  color: var(--primario-oscuro, #A84468);
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.contacto__exito .contacto__boton {
+  justify-self: center;
+  margin-top: 1rem;
+}

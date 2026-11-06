@@ -1,0 +1,94 @@
+.explorar__titulo {
+  margin: 0 0 1.5rem;
+}
+
+.explorar__filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--sombra);
+}
+
+.explorar__label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.explorar__label input,
+.explorar__label select {
+  min-width: 10rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--rosa-medio);
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 400;
+  background: #fff;
+  color: var(--texto);
+}
+
+.explorar__limpiar {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--primario);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--primario-oscuro);
+  font: inherit;
+  cursor: pointer;
+}
+
+.explorar__limpiar:hover,
+.explorar__limpiar:focus-visible {
+  background: var(--rosa-claro);
+}
+
+.explorar__conteo {
+  margin: 0 0 1rem;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+.explorar__grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.explorar__item {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.explorar__item > .tarjeta-personaje {
+  height: 100%;
+}
+
+.explorar__estado {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.explorar__estado--error {
+  color: var(--error);
+}
+
+.explorar__estado--error button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--error);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}

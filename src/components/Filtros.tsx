@@ -1,4 +1,17 @@
-function FiltroSelect({ id, etiqueta, valor, opciones, onChange }) {
+export interface Opcion {
+  valor: string
+  texto: string
+}
+
+interface Props {
+  id: string
+  etiqueta: string
+  valor: string
+  opciones: Opcion[]
+  onChange: (valor: string) => void
+}
+
+function FiltroSelect({ id, etiqueta, valor, opciones, onChange }: Props) {
   return (
     <label htmlFor={id} className="explorar__label">
       {etiqueta}

@@ -1,6 +1,12 @@
 import './Paginacion.css'
 
-function Paginacion({ pagina, totalPaginas, onCambiar }) {
+interface Props {
+  pagina: number
+  totalPaginas: number
+  onCambiar: (pagina: number) => void
+}
+
+function Paginacion({ pagina, totalPaginas, onCambiar }: Props) {
   if (totalPaginas <= 1) return null
 
   const numeros = Array.from({ length: totalPaginas }, (_, i) => i + 1)

@@ -1,6 +1,6 @@
 import './Cargando.css'
 
-function EsqueletoGrilla({ cantidad = 12 }) {
+function EsqueletoGrilla({ cantidad = 12 }: { cantidad?: number }) {
   return (
     <div role="status" aria-live="polite">
       <span className="solo-lectores">Cargando personajes…</span>

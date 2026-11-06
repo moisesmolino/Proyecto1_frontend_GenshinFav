@@ -1,8 +1,15 @@
 import './ContenedorToast.css'
 
-const ICONOS = { exito: '✓', error: '!', info: 'i' }
+import type { Toast, TipoToast } from '../tipos'
 
-function ContenedorToast({ toasts, onCerrar }) {
+const ICONOS: Record<TipoToast, string> = { exito: '✓', error: '!', info: 'i' }
+
+interface Props {
+  toasts: Toast[]
+  onCerrar: (id: number) => void
+}
+
+function ContenedorToast({ toasts, onCerrar }: Props) {
   return (
     // La región aria-live ya existe en el DOM antes de que llegue un toast,
     // por eso los lectores de pantalla anuncian los mensajes nuevos.

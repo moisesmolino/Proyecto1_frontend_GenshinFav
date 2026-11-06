@@ -1,5 +1,5 @@
 import './ModalNovedades.css'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 
 /*
  * ⚠️ DARK PATTERN INTENCIONAL — ejercicio del Proyecto 01
@@ -22,8 +22,15 @@ import { useEffect, useRef, useState } from 'react'
  * En un producto real nada de esto es aceptable: la versión ética pondría dos botones
  * del mismo peso, con textos neutros ("Suscribirme" / "Ahora no") y la casilla desmarcada.
  */
-function ModalNovedades({ abierto, onSuscribir, onRechazar, onCerrar }) {
-  const dialogRef = useRef(null)
+interface Props {
+  abierto: boolean
+  onSuscribir: (aceptaSocios: boolean) => void
+  onRechazar: () => void
+  onCerrar: () => void
+}
+
+function ModalNovedades({ abierto, onSuscribir, onRechazar, onCerrar }: Props) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
   const [aceptaSocios, setAceptaSocios] = useState(true) // ← premarcada a propósito
 
   useEffect(() => {
@@ -36,7 +43,7 @@ function ModalNovedades({ abierto, onSuscribir, onRechazar, onCerrar }) {
     if (!abierto && dialog.open) dialog.close()
   }, [abierto])
 
-  function alHacerClic(e) {
+  function alHacerClic(e: MouseEvent<HTMLDialogElement>) {
     if (e.target === dialogRef.current) onCerrar()
   }
 

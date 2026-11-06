@@ -1,15 +1,24 @@
 import './Contacto.css'
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import CampoFormulario from './CampoFormulario'
 import ModalConfirmacion from './ModalConfirmacion'
 import { useToast } from '../contexto/ToastContext'
 
-const VACIO = { nombre: '', email: '', mensaje: '' }
-const SIN_TOCAR = { nombre: false, email: false, mensaje: false }
+interface Formulario {
+  nombre: string
+  email: string
+  mensaje: string
+}
+
+type Campo = keyof Formulario
+type Errores = Partial<Record<Campo, string>>
+
+const VACIO: Formulario = { nombre: '', email: '', mensaje: '' }
+const SIN_TOCAR: Record<Campo, boolean> = { nombre: false, email: false, mensaje: false }
 const REGEX_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-function validar({ nombre, email, mensaje }) {
-  const errores = {}
+function validar({ nombre, email, mensaje }: Formulario): Errores {
+  const errores: Errores = {}
   if (nombre.trim().length < 2) {
     errores.nombre = 'El nombre debe tener al menos 2 caracteres.'
   }
@@ -23,8 +32,8 @@ function validar({ nombre, email, mensaje }) {
 }
 
 function Contacto() {
-  const [form, setForm] = useState(VACIO)
-  const [tocados, setTocados] = useState(SIN_TOCAR)
+  const [form, setForm] = useState<Formulario>(VACIO)
+  const [tocados, setTocados] = useState<Record<Campo, boolean>>(SIN_TOCAR)
   const [confirmando, setConfirmando] = useState(false)
   const [enviado, setEnviado] = useState(false)
 
@@ -32,17 +41,17 @@ function Contacto() {
   const esValido = Object.keys(errores).length === 0
 
   // Solo se muestra el error de un campo después de que la persona lo toca
-  const errorVisible = (campo) => (tocados[campo] ? errores[campo] : undefined)
+  const errorVisible = (campo: Campo) => (tocados[campo] ? errores[campo] : undefined)
 
-  const cambiar = (campo) => (valor) => setForm({ ...form, [campo]: valor })
-  const tocar = (campo) => () => setTocados({ ...tocados, [campo]: true })
+  const cambiar = (campo: Campo) => (valor: string) => setForm({ ...form, [campo]: valor })
+  const tocar = (campo: Campo) => () => setTocados({ ...tocados, [campo]: true })
   const { mostrarToast } = useToast()
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (!esValido) {
       setTocados({ nombre: true, email: true, mensaje: true })
-      mostrarToast('Revisa los campos marcados antes de enviar.', 'error') // ← nuevo
+      mostrarToast('Revisa los campos marcados antes de enviar.', 'error')
       return
     }
     setConfirmando(true)
@@ -53,24 +62,7 @@ function Contacto() {
     setEnviado(true)
     setForm(VACIO)
     setTocados(SIN_TOCAR)
-    mostrarToast('Mensaje enviado correctamente.', 'exito') // ← nuevo
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault()
-    if (!esValido) {
-      setTocados({ nombre: true, email: true, mensaje: true })
-      return
-    }
-    setConfirmando(true) // no envía todavía: pide confirmación
-  }
-
-  function confirmarEnvio() {
-    setConfirmando(false)
-    // Aquí iría la petición a un servicio de correo; por ahora se simula el envío
-    setEnviado(true)
-    setForm(VACIO)
-    setTocados(SIN_TOCAR)
+    mostrarToast('Mensaje enviado correctamente.', 'exito')
   }
 
   if (enviado) {
@@ -133,7 +125,7 @@ function Contacto() {
           placeholder="Escribe tu sugerencia aquí…"
         />
 
-        <button type="submit" className="contacto__boton" disabled={!esValido}>
+        <button type="submit" className="contacto__boton">
           Enviar mensaje
         </button>
       </form>

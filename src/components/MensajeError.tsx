@@ -1,12 +1,19 @@
 import './MensajeError.css'
 import { NavLink } from 'react-router'
 
+interface Props {
+  titulo?: string
+  mensaje?: string
+  onReintentar?: () => void
+  mostrarInicio?: boolean
+}
+
 function MensajeError({
   titulo = 'No se pudo cargar la información',
   mensaje = 'Verifica tu conexión e intenta de nuevo.',
   onReintentar,
   mostrarInicio = false,
-}) {
+}: Props) {
   return (
     <div className="mensaje-error" role="alert">
       <svg

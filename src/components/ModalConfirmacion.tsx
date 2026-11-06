@@ -1,5 +1,15 @@
 import './ModalConfirmacion.css'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type MouseEvent } from 'react'
+
+interface Props {
+  abierto: boolean
+  titulo: string
+  mensaje: string
+  textoConfirmar?: string
+  textoCancelar?: string
+  onConfirmar: () => void
+  onCancelar: () => void
+}
 
 function ModalConfirmacion({
   abierto,
@@ -9,8 +19,8 @@ function ModalConfirmacion({
   textoCancelar = 'Cancelar',
   onConfirmar,
   onCancelar,
-}) {
-  const dialogRef = useRef(null)
+}: Props) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
 
   // Abre o cierra el <dialog> nativo según la prop `abierto`
   useEffect(() => {
@@ -21,7 +31,7 @@ function ModalConfirmacion({
   }, [abierto])
 
   // Clic en el fondo oscuro (el propio <dialog>) = cancelar
-  function alHacerClic(e) {
+  function alHacerClic(e: MouseEvent<HTMLDialogElement>) {
     if (e.target === dialogRef.current) onCancelar()
   }
 

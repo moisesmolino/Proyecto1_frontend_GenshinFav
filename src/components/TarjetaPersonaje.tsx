@@ -1,8 +1,15 @@
 import './TarjetaPersonaje.css'
 import { useState } from 'react'
 import { NavLink } from 'react-router'
+import type { Personaje } from '../tipos'
 
-function TarjetaPersonaje({ personaje, esFavorito, onToggleFavorito }) {
+interface Props {
+  personaje: Personaje
+  esFavorito: boolean
+  onToggleFavorito: (personaje: Personaje) => void
+}
+
+function TarjetaPersonaje({ personaje, esFavorito, onToggleFavorito }: Props) {
   const [imagenFallida, setImagenFallida] = useState(false)
   const estrellas = personaje.rarity.split('_')[0] // "4_star" -> "4"
 

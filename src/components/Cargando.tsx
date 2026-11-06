@@ -1,6 +1,6 @@
 import './Cargando.css'
 
-function Cargando({ mensaje = 'Cargando datos…' }) {
+function Cargando({ mensaje = 'Cargando datos…' }: { mensaje?: string }) {
   return (
     <div className="cargando" role="status" aria-live="polite">
       <span className="cargando__spinner" aria-hidden="true" />

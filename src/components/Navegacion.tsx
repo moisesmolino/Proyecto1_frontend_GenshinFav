@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router';
 
-function Navegacion({ totalFavoritos }) {
+function Navegacion({ totalFavoritos }: { totalFavoritos: number }) {
   return (
     <header className="navegacion">
       <span className="logo">⛩️ Genshin Fav</span>

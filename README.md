@@ -1,7 +1,8 @@
-# Recetario
+# ⛩️ Genshin Fav
 
-Una app de recetas hecha con Vite, React y React Router. Funciona… más o menos:
-los usuarios reportaron diez fallas. El trabajo es encontrarlas y arreglarlas.
+Aplicación web para explorar los personajes de **Genshin Impact**, filtrarlos, ver su ficha completa y guardar tus favoritos. Hecha con **Vite, React 19 y React Router 7** como Proyecto Individual 1 de Frontend.
+
+Los datos vienen de la API pública [genshin-db-api](https://genshin-db-api.vercel.app/), y los favoritos se guardan en el navegador (`localStorage`).
 
 ## Correr el proyecto
 
@@ -10,46 +11,86 @@ npm install
 npm run dev
 ```
 
-Abre <http://localhost:5173>. Las recetas salen de `public/data/recetas.json`.
+Abre [http://localhost:5173](http://localhost:5173). Otros comandos:
 
-## Qué hay en el proyecto
+```bash
+npm run build     # genera la versión de producción
+npm run preview   # sirve la versión de producción
+```
+
+## Funcionalidades
+
+- **Inicio:** presentación de la app y modal de novedades (ver nota sobre *dark patterns*).
+- **Explorar:** búsqueda por nombre y filtros por elemento, arma, rareza y nación. Los filtros y la página viven en la URL, así que se pueden compartir. Paginación de 12 en 12.
+- **Detalle:** ficha completa de cada personaje (descripción, constelación, cumpleaños, voces) con enlace a la wiki.
+- **Favoritos:** lista persistente, con orden por nombre, rareza o elemento y confirmación antes de quitar.
+- **Contacto:** formulario con validación en vivo y confirmación antes de enviar.
+- **Toasts:** avisos al agregar o quitar favoritos, al enviar el formulario y al responder en el modal.
+- **Estados de carga y error:** esqueleto de carga, mensaje de error con botón de reintento y página 404.
+
+## Estructura
 
 ```
 src/
-├── main.jsx               monta la app dentro del BrowserRouter
-├── App.jsx                rutas y estado de favoritos
-├── api.js                 pide las recetas
+├── main.jsx                 BrowserRouter + ProveedorToast
+├── App.jsx                  rutas y estado de favoritos
+├── api.js                   peticiones a la API y normalización de datos
+├── index.css                estilos globales y clase .visually-hidden
+├── contexto/
+│   └── ToastContext.jsx     proveedor y hook useToast
 ├── components/
-│   ├── Navegacion.jsx
-│   ├── TarjetaReceta.jsx
-│   └── Temporizador.jsx
+│   ├── Navegacion.jsx       cabecera y menú principal
+│   ├── PiePagina.jsx
+│   ├── TarjetaPersonaje.jsx
+│   ├── Filtros.jsx          select con etiqueta (FiltroSelect)
+│   ├── Paginacion.jsx
+│   ├── CampoFormulario.jsx
+│   ├── Contacto.jsx
+│   ├── ModalConfirmacion.jsx
+│   ├── ModalNovedades.jsx
+│   ├── ContenedorToast.jsx
+│   ├── Cargando.jsx
+│   ├── EsqueletoGrilla.jsx
+│   └── MensajeError.jsx
 └── paginas/
     ├── Inicio.jsx
-    ├── Catalogo.jsx
+    ├── Explorar.jsx
     ├── Detalle.jsx
     ├── Favoritos.jsx
-    ├── NuevaReceta.jsx
     └── NoEncontrada.jsx
 ```
 
-## Reportes de usuario
+## Accesibilidad
 
-1. Entro a la página y no sale nada, todo en blanco. Probé en Chrome y en Edge y es igual.
-2. En Recetas dice "Mostrando 12 recetas" pero no veo ni una. ¿Dónde están?
-3. ¿Por qué sale un 0 al lado de Favoritos? No tengo ningún favorito y se ve raro.
-4. Le doy a "Agregar a favoritos" y no pasa nada, el botón sigue igual. Lo raro es que después fui a Favoritos y ahí sí estaba.
-5. Estaba limpiando mis favoritos y cuando quité el último se me puso todo en blanco.
-6. Abajo de la receta salen otras de "También te puede gustar". Le doy click a una, cambia la dirección arriba, pero la receta sigue siendo la misma.
-7. La receta dice 30 minutos, le di al temporizador y se acabó en 15. Y le doy a Pausar y sigue corriendo.
-8. Llené todo el formulario para subir mi receta, le di Guardar y se puso en blanco. Perdí todo lo que había escrito 😡
-9. Ayer me funcionaba. Hoy le di F5 y quedó en blanco. ¿La dañaron?
-10. Me pasaron un link a /contacto y solo me sale el menú. Ni un "no existe" ni nada.
+| Requisito | Cómo se cumple |
+| --- | --- |
+| **`alt`** | Las imágenes de personajes tienen un texto descriptivo (`Retrato de {nombre}`). Cuando la imagen falla se muestra una inicial decorativa con `aria-hidden`. Los íconos SVG decorativos también van ocultos a los lectores de pantalla. |
+| **`role`** | `role="search"` en los filtros, `role="status"` en cargas y en el anuncio de resultados, `role="alert"` en errores, `role="list"` en la grilla de resultados y `role="img"` en las estrellas de rareza. |
+| **`aria-label`** | En el `<nav>` principal y el de paginación, en la región de búsqueda, en los botones de favorito (`Favorito: {nombre}`), en el botón de cerrar toast y en los botones de página. |
+| **`htmlFor`** | Cada campo tiene su `<label htmlFor>` asociado al `id` del control: buscador, filtros, selector de orden y campos del formulario de contacto. La casilla del modal está envuelta en su `<label>`. |
+| **HTML semántico** | `<header>`, `<nav>`, `<main>` (único) y `<footer>`, `<section>` por página, `<article>` por personaje, `<ul>/<li>` para listas, `<dl>` para los datos del personaje y `<dialog>` nativo para los modales. Un `<h1>` por página con jerarquía ordenada (`h1` → `h2`). |
 
-## Reglas
+Otros detalles de accesibilidad:
 
-- Se puede usar el material del curso, la documentación de React y la de React
-  Router.
-- Se arregla el código que hay: no se reescribe la app desde cero.
-- No se cambian los nombres de los archivos ni las carpetas, ni lo que exporta
-  cada uno.
-- No se toca `public/data/recetas.json`.
+- `<html lang="es">` y título de documento definidos.
+- `aria-pressed` en los botones de favorito, `aria-current` en el menú y la paginación.
+- Errores del formulario asociados con `aria-invalid` y `aria-describedby`, y campos marcados con `aria-required`.
+- Los modales usan `<dialog>` (foco atrapado, cierre con `Esc`) con `aria-labelledby` y `aria-describedby`.
+- Al cambiar de página o limpiar filtros en Explorar, el foco se mueve a un elemento visible.
+- Los resultados filtrados se anuncian en una región `aria-live` oculta visualmente.
+- No se elimina el contorno de foco en ningún estilo.
+
+## Nota sobre *dark patterns*
+
+`ModalNovedades` usa **a propósito** tres patrones oscuros como ejercicio del proyecto: *confirmshaming* en el botón de rechazar, asimetría visual entre aceptar y rechazar, y casilla de socios premarcada. Está explicado en el comentario del archivo. En un producto real no sería aceptable. El modal sí se puede cerrar con `Esc` y con clic en el fondo, y el texto de rechazo se mantiene legible.
+
+## Tecnologías
+
+- [React 19](https://react.dev/)
+- [React Router 7](https://reactrouter.com/)
+- [Vite](https://vite.dev/)
+- [genshin-db-api](https://genshin-db-api.vercel.app/)
+
+## Autor
+
+Moisés Vega — Proyecto Individual 1, Frontend.

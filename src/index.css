@@ -7,7 +7,7 @@ body {
   color: #49303F;
 }
 
-a { color: #B85F7D; }
+a { color: #A84468; }
 
 .navegacion {
   display: flex;
@@ -29,14 +29,14 @@ a { color: #B85F7D; }
   text-align: center;
   background: #F5D5DC;
   font-family: system-ui, sans-serif;
-  color: #49303F;
+  color: #9A3B59;
 }
 
-.logo { color: #A84468; font-weight: 700; font-size: 1.2rem; }
+.logo { color: #9A3B59; font-weight: 700; font-size: 1.2rem; }
 
 .navegacion nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 
-.navegacion a { color: #49303F; text-decoration: none; }
+.navegacion a { color: #9A3B59; text-decoration: none; }
 
 .navegacion a.active { color: #A84468; font-weight: 700; border-bottom: 2px solid #ffb38a; }
 
@@ -76,7 +76,7 @@ main { max-width: 900px; margin: 0 auto; padding: 2rem; }
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
-  background: #B85F7D;
+  background: #A84468;
   color: #fff;
   font: inherit;
   text-decoration: none;

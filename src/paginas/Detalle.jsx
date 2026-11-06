@@ -97,7 +97,7 @@ function Detalle({ favoritos = [], onToggleFavorito }) {
           <h1 className="detalle__nombre">{personaje.name}</h1>
           {personaje.title && <p className="detalle__titulo">{personaje.title}</p>}
 
-          <p className="detalle__rareza" aria-label={`${estrellas} estrellas`}>
+          <p className="detalle__rareza" role="img" aria-label={`${estrellas} estrellas`}>
             {'★'.repeat(estrellas)}
           </p>
 

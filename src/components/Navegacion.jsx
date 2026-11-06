@@ -12,7 +12,7 @@ function Navegacion({ totalFavoritos }) {
           {totalFavoritos > 0 && (
             <>
               <span className="contador" aria-hidden="true">{totalFavoritos}</span>
-              <span className="visually-hidden"> </span>
+              <span className="visually-hidden"> ({totalFavoritos} guardados)</span>
             </>
           )}
         </NavLink>
